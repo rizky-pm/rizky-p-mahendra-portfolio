@@ -12,26 +12,15 @@ import { Banner } from '@/blocks/Banner/config'
 import { Code } from '@/blocks/Code/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 
-export const Hero: CollectionConfig = {
-  slug: 'hero',
+export const About: CollectionConfig = {
+  slug: 'about',
   labels: {
-    singular: 'Hero',
-    plural: 'Hero',
-  },
-  access: {
-    read: () => true,
-    create: () => true,
-    delete: () => true,
-    update: () => true,
+    singular: 'About',
+    plural: 'About',
   },
   fields: [
     {
       name: 'title',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'subtitle',
       type: 'text',
       required: true,
     },
@@ -52,6 +41,14 @@ export const Hero: CollectionConfig = {
       }),
       label: false,
       required: true,
+    },
+    {
+      name: 'media',
+      type: 'relationship',
+      relationTo: 'media', // The media collection
+      hasMany: true, // Indicates this field can only have one related media item
+      required: false, // Make it optional, or set to true if it's required
+      label: 'Media',
     },
   ],
 }
