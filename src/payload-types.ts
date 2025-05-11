@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     hero: Hero;
     about: About;
+    project: Project;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     hero: HeroSelect<false> | HeroSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
+    project: ProjectSelect<false> | ProjectSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -207,6 +209,41 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  media?: (number | Media)[] | null;
+  skills?:
+    | {
+        skill: string;
+        id?: string | null;
+      }[]
+    | null;
+  liveUrl?: string | null;
+  frontendRepo?: string | null;
+  backendRepo?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -227,6 +264,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'about';
         value: number | About;
+      } | null)
+    | ({
+        relationTo: 'project';
+        value: number | Project;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -322,6 +363,26 @@ export interface AboutSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   media?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project_select".
+ */
+export interface ProjectSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  media?: T;
+  skills?:
+    | T
+    | {
+        skill?: T;
+        id?: T;
+      };
+  liveUrl?: T;
+  frontendRepo?: T;
+  backendRepo?: T;
   updatedAt?: T;
   createdAt?: T;
 }
