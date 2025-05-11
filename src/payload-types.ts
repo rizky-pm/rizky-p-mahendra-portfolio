@@ -72,6 +72,7 @@ export interface Config {
     hero: Hero;
     about: About;
     project: Project;
+    experience: Experience;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     hero: HeroSelect<false> | HeroSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
     project: ProjectSelect<false> | ProjectSelect<true>;
+    experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -244,6 +246,38 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience".
+ */
+export interface Experience {
+  id: number;
+  companyName: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  skills: {
+    skill: string;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -268,6 +302,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'project';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'experience';
+        value: number | Experience;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -383,6 +421,25 @@ export interface ProjectSelect<T extends boolean = true> {
   liveUrl?: T;
   frontendRepo?: T;
   backendRepo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience_select".
+ */
+export interface ExperienceSelect<T extends boolean = true> {
+  companyName?: T;
+  position?: T;
+  startDate?: T;
+  endDate?: T;
+  description?: T;
+  skills?:
+    | T
+    | {
+        skill?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
