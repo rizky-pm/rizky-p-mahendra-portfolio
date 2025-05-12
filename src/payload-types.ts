@@ -76,6 +76,7 @@ export interface Config {
     experience: Experience;
     'experience-page': ExperiencePage;
     'tech-stack': TechStack;
+    contact: Contact;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -91,6 +92,7 @@ export interface Config {
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'experience-page': ExperiencePageSelect<false> | ExperiencePageSelect<true>;
     'tech-stack': TechStackSelect<false> | TechStackSelect<true>;
+    contact: ContactSelect<false> | ContactSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -361,6 +363,37 @@ export interface TechStack {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact".
+ */
+export interface Contact {
+  id: number;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  contactLinks: {
+    platform: string;
+    url: string;
+    icon?: (number | null) | Media;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -401,6 +434,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'tech-stack';
         value: string | TechStack;
+      } | null)
+    | ({
+        relationTo: 'contact';
+        value: number | Contact;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -570,6 +607,24 @@ export interface TechStackSelect<T extends boolean = true> {
   description?: T;
   iconBig?: T;
   iconSmall?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact_select".
+ */
+export interface ContactSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  contactLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

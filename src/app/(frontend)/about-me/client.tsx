@@ -60,7 +60,7 @@ const AboutMeClient = (props: Props) => {
             </motion.ul> */}
         </div>
 
-        <motion.div className="grid xl:w-3/5 grid-cols-[0.8fr_1.2fr] grid-rows-2 gap-2">
+        <motion.div className="grid xl:w-3/5 grid-cols-[0.8fr_1.2fr] grid-rows-2 gap-2 -z-20">
           {Array.isArray(data.media)
             ? data.media.map((media, index) => {
                 if (

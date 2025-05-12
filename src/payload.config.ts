@@ -16,6 +16,7 @@ import { ProjectPage } from './collections/ProjectPage'
 import { Experience } from './collections/Experience'
 import { ExperiencePage } from './collections/ExperiencePage'
 import { TechStack } from './collections/TechStackPage'
+import { Contact } from './collections/Contact'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -37,6 +38,7 @@ export default buildConfig({
     Experience,
     ExperiencePage,
     TechStack,
+    Contact,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

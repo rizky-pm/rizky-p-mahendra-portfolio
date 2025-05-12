@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Home, History, Swords, FolderGit, Info, Menu, X } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { Home, History, Swords, FolderGit, Info, Menu, X, Send } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import { AnimatePresence, motion, Variants } from 'motion/react'
@@ -41,6 +41,11 @@ export const navItems = [
     path: '/project',
     icon: <FolderGit className="w-6 h-6" />,
   },
+  {
+    label: 'Contact',
+    path: '/contact',
+    icon: <Send className="w-6 h-6" />,
+  },
 ]
 
 const Navbar = () => {
@@ -48,6 +53,23 @@ const Navbar = () => {
   const pathname = usePathname()
   const { push } = useRouter()
   const { isSmallScren } = useBreakpoints()
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
 
   return pathname !== '/' ? (
     <nav className="sm:fixed top-0 left-0 z-100 sm:flex sm:justify-center sm:items-center px-5 py-5 sm:py-0 sm:px-0 h-full">
