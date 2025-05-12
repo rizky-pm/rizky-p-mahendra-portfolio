@@ -11,8 +11,6 @@ type Props = {
 }
 
 const ContactClient = ({ contactDocs }: Props) => {
-  console.log(contactDocs)
-
   return (
     <>
       <motion.div
