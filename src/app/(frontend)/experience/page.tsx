@@ -17,7 +17,7 @@ const Experience = async () => {
   const { docs: experiencePageDocs } = experiencePageData
 
   if (!experiencesDocs || !experiencePageDocs) {
-    throw new Error('Project data is not found')
+    throw new Error('Experience data is not found')
   }
 
   return (

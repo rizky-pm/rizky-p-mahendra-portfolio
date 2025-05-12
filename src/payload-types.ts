@@ -75,6 +75,7 @@ export interface Config {
     'project-page': ProjectPage;
     experience: Experience;
     'experience-page': ExperiencePage;
+    'tech-stack': TechStack;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -89,6 +90,7 @@ export interface Config {
     'project-page': ProjectPageSelect<false> | ProjectPageSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'experience-page': ExperiencePageSelect<false> | ExperiencePageSelect<true>;
+    'tech-stack': TechStackSelect<false> | TechStackSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -332,6 +334,33 @@ export interface ExperiencePage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tech-stack".
+ */
+export interface TechStack {
+  id: string;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  iconBig?: (number | Media)[] | null;
+  iconSmall?: (number | Media)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -368,6 +397,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'experience-page';
         value: string | ExperiencePage;
+      } | null)
+    | ({
+        relationTo: 'tech-stack';
+        value: string | TechStack;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -524,6 +557,19 @@ export interface ExperiencePageSelect<T extends boolean = true> {
   id?: T;
   title?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tech-stack_select".
+ */
+export interface TechStackSelect<T extends boolean = true> {
+  id?: T;
+  title?: T;
+  description?: T;
+  iconBig?: T;
+  iconSmall?: T;
   updatedAt?: T;
   createdAt?: T;
 }

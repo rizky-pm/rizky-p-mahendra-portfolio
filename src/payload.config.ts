@@ -15,6 +15,7 @@ import { Project } from './collections/Project'
 import { ProjectPage } from './collections/ProjectPage'
 import { Experience } from './collections/Experience'
 import { ExperiencePage } from './collections/ExperiencePage'
+import { TechStack } from './collections/TechStackPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +27,17 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Hero, About, Project, ProjectPage, Experience, ExperiencePage],
+  collections: [
+    Users,
+    Media,
+    Hero,
+    About,
+    Project,
+    ProjectPage,
+    Experience,
+    ExperiencePage,
+    TechStack,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -39,7 +39,7 @@ const ProjectClient = (props: Props) => {
       }}
       className="w-full px-5 sm:px-20 2xl:px-40 sm:py-10 2xl:py-20 sm:flex sm:justify-center sm:items-center"
     >
-      <div className="w-full flex flex-col xl:flex-row gap-10">
+      <div className="w-full container flex flex-col xl:flex-row gap-10">
         <div className="w-full flex flex-col gap-2 xl:w-2/5 2xl:w-2/6 mb-auto xl:sticky top-0 left-0">
           <div className="flex flex-col gap-2">
             <h1 className="font-extrabold text-xl md:text-2xl xl:text-3xl uppercase tracking-widest inline-block leading-none">
@@ -48,7 +48,7 @@ const ProjectClient = (props: Props) => {
 
             <RichText
               data={projectPageDocs.description}
-              className="prose prose-sm sm:prose lg:prose-lg text-sm tracking-wide"
+              className="prose prose-sm sm:prose tracking-wide"
             />
           </div>
           <div>
