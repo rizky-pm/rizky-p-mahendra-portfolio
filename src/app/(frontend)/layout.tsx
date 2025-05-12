@@ -1,9 +1,15 @@
 import React from 'react'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './styles.css'
+import Navbar from '@/components/navbar'
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+})
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Rizky P. Mahendra | Portfolio',
+  description: "Rizky's Portfolio",
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -11,8 +17,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body>
-        <main>{children}</main>
+      <body
+        className={`${plusJakartaSans.className} antialiased flex flex-col sm:flex-row overflow-x-hidden`}
+      >
+        <Navbar />
+        <main className="w-full flex justify-center">{children}</main>
       </body>
     </html>
   )
