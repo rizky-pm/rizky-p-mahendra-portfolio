@@ -45,9 +45,9 @@ export const About: CollectionConfig = {
     {
       name: 'media',
       type: 'relationship',
-      relationTo: 'media', // The media collection
-      hasMany: true, // Indicates this field can only have one related media item
-      required: false, // Make it optional, or set to true if it's required
+      relationTo: 'media',
+      hasMany: true,
+      required: false,
       label: 'Media',
     },
   ],

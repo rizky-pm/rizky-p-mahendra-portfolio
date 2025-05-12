@@ -1,16 +1,23 @@
-import React from 'react'
+import { getPayload } from 'payload'
+import AboutMeClient from './client'
+import configPromise from '@payload-config'
 
-const AboutMePage = () => {
-  return (
-    <div>
-      <h1>About Me</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur cumque, architecto nam
-        ad debitis aliquam, maxime illum incidunt soluta obcaecati aut quidem delectus, dolor
-        maiores! Cum consequuntur omnis dignissimos quidem.
-      </p>
-    </div>
-  )
+const AboutMePage = async () => {
+  const payload = await getPayload({ config: configPromise })
+
+  const data = await payload.find({
+    collection: 'about',
+    limit: 1,
+  })
+  const { docs } = data
+
+  if (!docs || docs.length !== 1) {
+    throw new Error('Expected exactly one "aboutMe" document')
+  }
+
+  const aboutMeData = docs[0]
+
+  return <AboutMeClient data={aboutMeData} />
 }
 
 export default AboutMePage
