@@ -71,7 +71,8 @@ export interface Config {
     media: Media;
     hero: Hero;
     about: About;
-    project: Project;
+    projects: Project;
+    'project-page': ProjectPage;
     experience: Experience;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -83,7 +84,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     hero: HeroSelect<false> | HeroSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
-    project: ProjectSelect<false> | ProjectSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    'project-page': ProjectPageSelect<false> | ProjectPageSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -211,7 +213,7 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "project".
+ * via the `definition` "projects".
  */
 export interface Project {
   id: number;
@@ -241,6 +243,31 @@ export interface Project {
   liveUrl?: string | null;
   frontendRepo?: string | null;
   backendRepo?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-page".
+ */
+export interface ProjectPage {
+  id: number;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -300,8 +327,12 @@ export interface PayloadLockedDocument {
         value: number | About;
       } | null)
     | ({
-        relationTo: 'project';
+        relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'project-page';
+        value: number | ProjectPage;
       } | null)
     | ({
         relationTo: 'experience';
@@ -406,9 +437,9 @@ export interface AboutSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "project_select".
+ * via the `definition` "projects_select".
  */
-export interface ProjectSelect<T extends boolean = true> {
+export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   media?: T;
@@ -421,6 +452,16 @@ export interface ProjectSelect<T extends boolean = true> {
   liveUrl?: T;
   frontendRepo?: T;
   backendRepo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "project-page_select".
+ */
+export interface ProjectPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

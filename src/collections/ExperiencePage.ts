@@ -12,11 +12,11 @@ import { Banner } from '@/blocks/Banner/config'
 import { Code } from '@/blocks/Code/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 
-export const Project: CollectionConfig = {
-  slug: 'projects',
+export const ExperiencePage: CollectionConfig = {
+  slug: 'experience-page',
   labels: {
-    singular: 'Project',
-    plural: 'Projects',
+    singular: 'Experience Page',
+    plural: 'Experience Page',
   },
   fields: [
     {
@@ -41,44 +41,6 @@ export const Project: CollectionConfig = {
       }),
       label: false,
       required: true,
-    },
-    {
-      name: 'media',
-      type: 'relationship',
-      relationTo: 'media',
-      hasMany: true,
-      label: 'Media',
-    },
-    {
-      name: 'skills',
-      label: 'Skills',
-      type: 'array',
-      required: false,
-      fields: [
-        {
-          name: 'skill',
-          type: 'text',
-          required: true,
-        },
-      ],
-    },
-    {
-      name: 'liveUrl',
-      type: 'text',
-      label: 'Live URL',
-      required: false,
-    },
-    {
-      name: 'frontendRepo',
-      type: 'text',
-      label: 'Frontend Repository URL',
-      required: false,
-    },
-    {
-      name: 'backendRepo',
-      type: 'text',
-      label: 'Backend Repository URL',
-      required: false,
     },
   ],
 }

@@ -11,8 +11,8 @@ const AboutMePage = async () => {
   })
   const { docs } = data
 
-  if (!docs || docs.length !== 1) {
-    throw new Error('Expected exactly one "aboutMe" document')
+  if (!docs) {
+    throw new Error('About me data is not found')
   }
 
   const aboutMeData = docs[0]
