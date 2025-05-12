@@ -16,7 +16,6 @@ type Props = {
 const ProjectClient = (props: Props) => {
   const { projectPageDocs, projectsDocs } = props
 
-  console.log(projectsDocs)
   const [thumbnailPreview, setThumbnailPreview] = useState<Media | null>(null)
 
   const { isExtraLargeScreen } = useBreakpoints()
@@ -47,7 +46,10 @@ const ProjectClient = (props: Props) => {
               {projectPageDocs.title}
             </h1>
 
-            <RichText data={projectPageDocs.description} className="text-sm tracking-wider" />
+            <RichText
+              data={projectPageDocs.description}
+              className="prose prose-sm sm:prose lg:prose-lg text-sm tracking-wide"
+            />
           </div>
           <div>
             {isExtraLargeScreen ? (
@@ -86,7 +88,7 @@ const ProjectClient = (props: Props) => {
               {projectsDocs.map((item) => (
                 <div key={item.title} className="flex flex-col items-end text-right">
                   <h1
-                    className="w-fit scroll-m-20 text-4xl md:text-5xl xl:text-6xl 2xl:text-8xl font-extrabold tracking-tight uppercase link"
+                    className="w-fit scroll-m-20 text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-extrabold tracking-tight uppercase link"
                     onMouseEnter={() => {
                       if (isExtraLargeScreen && Array.isArray(item.media)) {
                         setThumbnailPreview(item.media[0] as Media)
@@ -103,6 +105,10 @@ const ProjectClient = (props: Props) => {
                   >
                     {item.title}
                   </h1>
+                  <RichText
+                    data={item.description}
+                    className="prose prose-sm sm:prose lg:prose-lg font-medium tracking-wide"
+                  />
                 </div>
               ))}
 

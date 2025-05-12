@@ -33,7 +33,10 @@ const AboutMeClient = (props: Props) => {
             </h1>
 
             <div className="flex flex-col gap-4">
-              <RichText data={data.description} className="text-sm tracking-wider" />
+              <RichText
+                data={data.description}
+                className="prose prose-sm sm:prose lg:prose-lg text-sm tracking-wide"
+              />
             </div>
 
             {/* <motion.div

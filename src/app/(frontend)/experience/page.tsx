@@ -1,0 +1,28 @@
+import React from 'react'
+import ExperienceClient from './client'
+import configPromise from '@payload-config'
+import { getPayload } from 'payload'
+
+const Experience = async () => {
+  const payload = await getPayload({ config: configPromise })
+
+  const experiencesData = await payload.find({
+    collection: 'experience',
+  })
+  const experiencePageData = await payload.find({
+    collection: 'experience-page',
+  })
+
+  const { docs: experiencesDocs } = experiencesData
+  const { docs: experiencePageDocs } = experiencePageData
+
+  if (!experiencesDocs || !experiencePageDocs) {
+    throw new Error('Project data is not found')
+  }
+
+  return (
+    <ExperienceClient experienceDocs={experiencesDocs} experinecePageDocs={experiencePageDocs[0]} />
+  )
+}
+
+export default Experience

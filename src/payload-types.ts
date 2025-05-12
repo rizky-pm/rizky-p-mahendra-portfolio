@@ -74,6 +74,7 @@ export interface Config {
     projects: Project;
     'project-page': ProjectPage;
     experience: Experience;
+    'experience-page': ExperiencePage;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -87,6 +88,7 @@ export interface Config {
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'project-page': ProjectPageSelect<false> | ProjectPageSelect<true>;
     experience: ExperienceSelect<false> | ExperienceSelect<true>;
+    'experience-page': ExperiencePageSelect<false> | ExperiencePageSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -276,7 +278,7 @@ export interface ProjectPage {
  * via the `definition` "experience".
  */
 export interface Experience {
-  id: number;
+  id: string;
   companyName: string;
   position: string;
   startDate: string;
@@ -300,6 +302,31 @@ export interface Experience {
     skill: string;
     id?: string | null;
   }[];
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience-page".
+ */
+export interface ExperiencePage {
+  id: string;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -336,7 +363,11 @@ export interface PayloadLockedDocument {
       } | null)
     | ({
         relationTo: 'experience';
-        value: number | Experience;
+        value: string | Experience;
+      } | null)
+    | ({
+        relationTo: 'experience-page';
+        value: string | ExperiencePage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -470,6 +501,7 @@ export interface ProjectPageSelect<T extends boolean = true> {
  * via the `definition` "experience_select".
  */
 export interface ExperienceSelect<T extends boolean = true> {
+  id?: T;
   companyName?: T;
   position?: T;
   startDate?: T;
@@ -481,6 +513,17 @@ export interface ExperienceSelect<T extends boolean = true> {
         skill?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experience-page_select".
+ */
+export interface ExperiencePageSelect<T extends boolean = true> {
+  id?: T;
+  title?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { v4 as uuidv4 } from 'uuid'
 
 import {
   BlocksFeature,
@@ -19,6 +20,15 @@ export const ExperiencePage: CollectionConfig = {
     plural: 'Experience Page',
   },
   fields: [
+    {
+      name: 'id',
+      type: 'text',
+      unique: true,
+      defaultValue: () => uuidv4(),
+      admin: {
+        readOnly: true,
+      },
+    },
     {
       name: 'title',
       type: 'text',
