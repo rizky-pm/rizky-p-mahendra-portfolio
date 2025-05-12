@@ -11,10 +11,11 @@ type Props = {
 
 const ExperienceDetail = async ({ params }: Props) => {
   const payload = await getPayload({ config: configPromise })
+  const { experienceId } = await params
 
   const experience = await payload.findByID({
     collection: 'experience',
-    id: params.experienceId,
+    id: experienceId,
   })
 
   if (!experience) {

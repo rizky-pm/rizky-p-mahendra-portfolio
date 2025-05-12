@@ -11,10 +11,11 @@ type Props = {
 
 const ProjectDetail = async ({ params }: Props) => {
   const payload = await getPayload({ config: configPromise })
+  const { projectId } = await params
 
   const project = await payload.findByID({
     collection: 'projects',
-    id: params.projectId,
+    id: projectId,
   })
 
   if (!project) {
