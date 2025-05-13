@@ -9,6 +9,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import TechStackIcon from './components/tech-stack-icon'
+import Loading from '@/components/loading'
 
 type Props = {
   techStackDocs: TechStack
@@ -19,18 +20,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
 
   return (
     <>
-      <motion.div
-        className="absolute z-20 h-screen w-full bg-primary"
-        initial={{ y: 0 }}
-        animate={{
-          y: '-100%',
-          transition: {
-            ease: 'easeInOut',
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
-      />
+      <Loading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

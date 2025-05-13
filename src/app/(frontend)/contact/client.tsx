@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Contact } from '@/payload-types'
 import Image from 'next/image'
+import Loading from '@/components/loading'
 
 type Props = {
   contactDocs: Contact
@@ -13,18 +14,7 @@ type Props = {
 const ContactClient = ({ contactDocs }: Props) => {
   return (
     <>
-      <motion.div
-        className="absolute z-20 h-screen w-full bg-primary"
-        initial={{ y: 0 }}
-        animate={{
-          y: '-100%',
-          transition: {
-            ease: 'easeInOut',
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
-      />
+      <Loading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import _ from 'lodash'
 import { Media, Project } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import Loading from '@/components/loading'
 
 type Props = {
   projectDetailDocs: Project
@@ -20,18 +21,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
 
   return (
     <>
-      <motion.div
-        className="absolute z-20 h-screen w-full bg-primary"
-        initial={{ y: 0 }}
-        animate={{
-          y: '-100%',
-          transition: {
-            ease: 'easeInOut',
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
-      />
+      <Loading />
       <motion.section
         initial={{
           y: -30,

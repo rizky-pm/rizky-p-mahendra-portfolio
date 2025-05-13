@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { Media, Project, ProjectPage } from '@/payload-types'
 import _ from 'lodash'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import Loading from '@/components/loading'
 
 type Props = {
   projectPageDocs: ProjectPage
@@ -25,18 +26,7 @@ const ProjectClient = (props: Props) => {
 
   return (
     <>
-      <motion.div
-        className="absolute z-20 h-screen w-full bg-primary"
-        initial={{ y: 0 }}
-        animate={{
-          y: '-100%',
-          transition: {
-            ease: 'easeInOut',
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
-      />
+      <Loading />
       <motion.section
         initial={{
           y: -30,

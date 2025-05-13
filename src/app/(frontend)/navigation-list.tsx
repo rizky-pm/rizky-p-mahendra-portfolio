@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useMemo } from 'react'
 import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
@@ -27,23 +28,25 @@ const NavigationList = () => {
   }, [])
 
   return (
-    <motion.ul
-      className="container flex flex-col gap-2 md:gap-4 justify-between xl:flex-row"
-      variants={listVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {navigation.map((item) => (
-        <motion.li
-          key={item.path}
-          className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase text-primary"
-          variants={itemVariants}
-          onClick={() => push(item.path)}
-        >
-          {item.label}
-        </motion.li>
-      ))}
-    </motion.ul>
+    <>
+      <motion.ul
+        className="container flex flex-col gap-2 md:gap-4 justify-between xl:flex-row"
+        variants={listVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {navigation.map((item) => (
+          <motion.li
+            key={item.path}
+            className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
+            variants={itemVariants}
+            onClick={() => push(item.path)}
+          >
+            {item.label}
+          </motion.li>
+        ))}
+      </motion.ul>
+    </>
   )
 }
 

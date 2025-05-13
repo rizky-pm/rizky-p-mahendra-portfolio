@@ -7,6 +7,7 @@ import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { Experience, ExperiencePage } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import Loading from '@/components/loading'
 
 type Props = {
   experinecePageDocs: ExperiencePage
@@ -17,18 +18,7 @@ const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
   const { push } = useRouter()
   return (
     <>
-      <motion.div
-        className="absolute z-20 h-screen w-full bg-primary"
-        initial={{ y: 0 }}
-        animate={{
-          y: '-100%',
-          transition: {
-            ease: 'easeInOut',
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
-      />
+      <Loading />
       <motion.section
         initial={{
           y: -30,

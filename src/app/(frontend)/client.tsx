@@ -7,6 +7,7 @@ import { BoxReveal } from '@/components/magicui/box-reveal'
 import NavigationList from './navigation-list'
 import { Hero } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import Loading from '@/components/loading'
 
 const boxColor = 'oklch(0.208 0.042 265.755)'
 const revealDelay = 1.25
@@ -20,21 +21,10 @@ export default function HomePageClient(props: Props) {
 
   return data ? (
     <>
-      <motion.div
-        className="absolute z-20 h-screen w-full bg-primary"
-        initial={{ y: 0 }}
-        animate={{
-          y: '-100%',
-          transition: {
-            ease: 'easeInOut',
-            duration: 0.5,
-            delay: 0.5,
-          },
-        }}
-      />
+      <Loading />
 
       <div className="h-full flex flex-col justify-center items-center gap-10 xl:gap-20 w-full px-10 xl:px-0">
-        <div className="container flex flex-col gap-2">
+        <div className="container flex flex-col gap-2 -z-50">
           <BoxReveal textDirection="right" boxColor={boxColor} delay={revealDelay}>
             <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
               {data.title}
