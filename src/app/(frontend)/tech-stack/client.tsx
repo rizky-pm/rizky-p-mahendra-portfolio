@@ -42,7 +42,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
             />
           </div>
 
-          <div className="flex xl:flex-col gap-8 xl:gap-16 justify-center xl:justify-start h-[70vh] xl:h-auto">
+          <div className="flex xl:flex-col gap-8 xl:gap-16 justify-center xl:justify-start h-[60vh] md:h-[70vh] xl:h-auto">
             {techStackDocs.iconBig?.length ? (
               <Marquee className="[--duration:40s]" vertical={!isExtraLargeScreen}>
                 {techStackDocs.iconBig.map((item) => {

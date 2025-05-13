@@ -2,6 +2,7 @@ import React from 'react'
 import ExperienceDetailClient from './client'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: {
@@ -13,16 +14,21 @@ const ExperienceDetail = async ({ params }: Props) => {
   const payload = await getPayload({ config: configPromise })
   const { experienceId } = await params
 
-  const experience = await payload.findByID({
-    collection: 'experience',
-    id: experienceId,
-  })
+  try {
+    const experience = await payload.findByID({
+      collection: 'experience',
+      id: experienceId,
+    })
 
-  if (!experience) {
-    throw new Error('Experience not found')
+    if (!experience) {
+      notFound()
+    }
+
+    return <ExperienceDetailClient experienceDetailDocs={experience} />
+  } catch (err) {
+    console.error(err)
+    notFound()
   }
-
-  return <ExperienceDetailClient experienceDetailDocs={experience} />
 }
 
 export default ExperienceDetail

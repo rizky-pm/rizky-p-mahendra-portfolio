@@ -2,7 +2,6 @@
 
 import React from 'react'
 import './styles.css'
-import { motion } from 'motion/react'
 import { BoxReveal } from '@/components/magicui/box-reveal'
 import NavigationList from './navigation-list'
 import { Hero } from '@/payload-types'
