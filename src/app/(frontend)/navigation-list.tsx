@@ -9,24 +9,14 @@ import _ from 'lodash'
 
 const NavigationList = () => {
   const pathname = usePathname()
-  console.log(pathname)
 
   const navigation = useMemo(() => {
-    const existsInNav = _.some(navItems, (item) => item.path === pathname)
-
     if (pathname === '/') {
       return navItems.filter((item) => item.path !== '/')
     }
 
-    if (!existsInNav) {
-      return navItems
-    }
-
     return navItems
   }, [pathname])
-
-  const isValidRoute = _.some(navItems, (item) => item.path === pathname)
-  console.log(isValidRoute)
 
   return (
     <>
@@ -36,7 +26,7 @@ const NavigationList = () => {
           hidden: {},
           visible: {
             transition: {
-              delayChildren: isValidRoute ? 2.5 : 0,
+              delayChildren: 2.5,
               staggerChildren: 0.2,
             },
           },

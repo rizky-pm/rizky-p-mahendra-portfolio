@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import NavigationList from './(frontend)/navigation-list'
+import { navItems } from '@/components/navbar'
+import Link from 'next/link'
 
 const ErrorPage = ({ error }: { error: Error }) => {
   useEffect(() => {
@@ -9,7 +10,7 @@ const ErrorPage = ({ error }: { error: Error }) => {
   }, [error])
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center gap-10 xl:gap-20 w-full px-10 xl:px-0">
+    <div className="min-h-screen flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
       <div className="container flex flex-col gap-2">
         <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
           Something Went Wrong
@@ -17,12 +18,18 @@ const ErrorPage = ({ error }: { error: Error }) => {
         <p className="text-sm md:text-base xl:text-lg leading-relaxed text-primary">
           We encountered an unexpected issue. Please try again later.
         </p>
-
-        <div className="text-sm mb-10">
-          <strong>Error ID:</strong> {error.message || 'Unknown error'}
-        </div>
       </div>
-      <NavigationList />
+
+      <ul className="container flex flex-col gap-2 md:gap-4 justify-between xl:flex-row">
+        {navItems.map((item) => (
+          <li
+            key={item.path}
+            className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
+          >
+            <Link href={item.path}>{item.label}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
