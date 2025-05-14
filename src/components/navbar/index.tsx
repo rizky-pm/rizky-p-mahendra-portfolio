@@ -96,7 +96,7 @@ const Navbar = () => {
               initial={{ x: '-100%' }}
               animate={{ x: 0, transition: { duration: 0.25, ease: 'easeInOut' } }}
               exit={{ x: '-100%', transition: { duration: 0.25, delay: 0.5, ease: 'easeInOut' } }}
-              className="absolute text-primary-foreground flex flex-col justify-center items-center top-0 left-0 h-screen w-screen bg-primary z-30"
+              className="absolute  -foreground flex flex-col justify-center items-center top-0 left-0 h-screen w-screen bg-primary z-30"
             >
               <i
                 className="absolute top-5 right-5 cursor-pointer"

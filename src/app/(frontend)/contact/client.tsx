@@ -37,7 +37,7 @@ const ContactClient = ({ contactDocs }: Props) => {
       >
         <div className="w-full container flex flex-col gap-10 xl:sticky xl:mb-auto top-20 left-0 h-full">
           <div className="flex flex-col gap-4 xl:gap-8 xl:w-2/4">
-            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
+            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase  ">
               {contactDocs.title}
             </h1>
 

@@ -39,7 +39,7 @@ const NavigationList = () => {
         {navigation.map((item) => (
           <motion.li
             key={item.path}
-            className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
+            className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase   cursor-pointer"
             variants={{
               hidden: { opacity: 0 },
               visible: { opacity: 1 },

@@ -42,7 +42,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
       >
         <div className="w-full container flex flex-col gap-10 mb-auto xl:sticky top-20 left-0 h-full md:justify-center">
           <div className="flex flex-col gap-2 xl:w-2/5">
-            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
+            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase">
               {techStackDocs.title}
             </h1>
 

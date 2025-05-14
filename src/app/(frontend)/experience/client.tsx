@@ -64,7 +64,7 @@ const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
                   <p className="font-medium text-lg md:text-xl xl:text-2xl tracking-wide">
                     {item.companyName}
                   </p>
-                  <span className="text-base md:text-lg xl:text-xl text-muted-foreground tracking-wide">
+                  <span className="text-base md:text-lg xl:text-xl text-accent tracking-wide">
                     {`${dayjs(item.startDate).format('MMM YYYY')} - ${dayjs(item.endDate).format('MMM YYYY')}`}
                   </span>
                 </div>

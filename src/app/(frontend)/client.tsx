@@ -9,7 +9,7 @@ import { BoxReveal } from '@/components/magicui/box-reveal'
 import NavigationList from '@/components/navigation-list'
 import ForceLoading from '@/components/force-loading'
 
-const boxColor = 'oklch(0.208 0.042 265.755)'
+const boxColor = '#343A40'
 const revealDelay = 1.25
 
 type Props = {
@@ -35,13 +35,13 @@ export default function HomePageClient(props: Props) {
       <div className="h-full flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
         <div className="container flex flex-col gap-2 -z-50">
           <BoxReveal textDirection="right" boxColor={boxColor} delay={revealDelay}>
-            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
+            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase">
               {data.title}
             </h1>
           </BoxReveal>
 
           <BoxReveal textDirection="right" boxColor={boxColor} delay={revealDelay}>
-            <p className="text-lg md:text-xl xl:text-2xl font-semibold uppercase tracking-widest text-primary">
+            <p className="text-lg md:text-xl xl:text-2xl font-semibold uppercase tracking-widest">
               {data.subtitle}
             </p>
           </BoxReveal>
@@ -49,7 +49,7 @@ export default function HomePageClient(props: Props) {
           <BoxReveal boxColor={boxColor} delay={revealDelay}>
             <RichText
               data={data.description}
-              className="text-sm md:text-base xl:text-lg leading-relaxed text-primary"
+              className="text-sm md:text-base xl:text-lg leading-relaxed"
             />
           </BoxReveal>
         </div>

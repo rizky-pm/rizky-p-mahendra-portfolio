@@ -40,7 +40,7 @@ const AboutMeClient = (props: Props) => {
       >
         <div className="w-full container flex flex-col-reverse xl:flex-row gap-10 xl:sticky top-20 left-0 justify-center">
           <div className="flex flex-col gap-2 xl:w-2/5">
-            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
+            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase  ">
               {data.title}
             </h1>
 

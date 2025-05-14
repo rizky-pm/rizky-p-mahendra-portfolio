@@ -27,10 +27,10 @@ const ErrorPage = ({ error }: { error: Error }) => {
       </motion.div>
       <div className="min-h-screen flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
         <div className="container flex flex-col gap-2">
-          <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
+          <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase  ">
             Oops!
           </h1>
-          <p className="text-sm md:text-base xl:text-lg leading-relaxed text-primary">
+          <p className="text-sm md:text-base xl:text-lg leading-relaxed  ">
             We encountered an unexpected issue. Please try again later.
           </p>
         </div>
