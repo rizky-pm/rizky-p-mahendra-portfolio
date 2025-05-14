@@ -3,9 +3,9 @@
 import React, { useMemo } from 'react'
 import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
-import { navItems } from '@/components/navbar'
 import Link from 'next/link'
 import _ from 'lodash'
+import { navItems } from '@/constants'
 
 const NavigationList = () => {
   const pathname = usePathname()

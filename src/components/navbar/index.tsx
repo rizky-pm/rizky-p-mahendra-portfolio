@@ -1,10 +1,11 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { Home, History, Swords, FolderGit, Info, Menu, X, Send } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import { AnimatePresence, motion, Variants } from 'motion/react'
+import { navItems } from '@/constants'
 
 const underlineVariants: Variants = {
   initial: { scaleX: 0 },
@@ -14,15 +15,6 @@ const underlineVariants: Variants = {
     transition: { duration: 0.3, ease: 'easeInOut' },
   },
 }
-
-export const navItems = [
-  { label: 'Home', path: '/', icon: <Home className="w-6 h-6" /> },
-  { label: 'About Me', path: '/about-me', icon: <Info className="w-6 h-6" /> },
-  { label: 'Tech Stack', path: '/tech-stack', icon: <Swords className="w-6 h-6" /> },
-  { label: 'Experience', path: '/experience', icon: <History className="w-6 h-6" /> },
-  { label: 'Project', path: '/project', icon: <FolderGit className="w-6 h-6" /> },
-  { label: 'Contact', path: '/contact', icon: <Send className="w-6 h-6" /> },
-]
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
