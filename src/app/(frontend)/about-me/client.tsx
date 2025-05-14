@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { About, Media } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import ForceLoading from '@/components/force-loading'
 
 type Props = {
   data: About
@@ -27,6 +28,7 @@ const AboutMeClient = (props: Props) => {
 
   return (
     <>
+      <ForceLoading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

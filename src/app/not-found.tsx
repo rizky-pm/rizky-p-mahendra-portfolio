@@ -1,6 +1,5 @@
 // app/not-found.tsx
 'use client'
-
 import { navItems } from '@/constants'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import { useRouter } from 'next/navigation'

@@ -6,7 +6,7 @@ import _ from 'lodash'
 import { motion } from 'motion/react'
 import { Experience } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import Loading from '@/components/loading'
+import ForceLoading from '@/components/force-loading'
 
 type Props = {
   experienceDetailDocs: Experience
@@ -15,7 +15,7 @@ type Props = {
 const ExperienceDetailClient = ({ experienceDetailDocs }: Props) => {
   return (
     <>
-      <Loading />
+      <ForceLoading />
       <motion.section
         initial={{
           y: -30,

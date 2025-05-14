@@ -6,6 +6,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Contact } from '@/payload-types'
 import Image from 'next/image'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import ForceLoading from '@/components/force-loading'
 
 type Props = {
   contactDocs: Contact
@@ -24,6 +25,7 @@ const ContactClient = ({ contactDocs }: Props) => {
 
   return (
     <>
+      <ForceLoading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

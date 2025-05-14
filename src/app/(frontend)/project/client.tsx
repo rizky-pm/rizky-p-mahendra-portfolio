@@ -8,6 +8,7 @@ import { Media, Project, ProjectPage } from '@/payload-types'
 import _ from 'lodash'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import ForceLoading from '@/components/force-loading'
 
 type Props = {
   projectPageDocs: ProjectPage
@@ -35,6 +36,7 @@ const ProjectClient = (props: Props) => {
 
   return (
     <>
+      <ForceLoading />
       <motion.section
         initial={{
           y: -30,

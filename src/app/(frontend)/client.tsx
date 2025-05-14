@@ -7,6 +7,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import { BoxReveal } from '@/components/magicui/box-reveal'
 import NavigationList from '@/components/navigation-list'
+import ForceLoading from '@/components/force-loading'
 
 const boxColor = 'oklch(0.208 0.042 265.755)'
 const revealDelay = 1.25
@@ -30,6 +31,7 @@ export default function HomePageClient(props: Props) {
 
   return data ? (
     <>
+      <ForceLoading />
       <div className="h-full flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
         <div className="container flex flex-col gap-2 -z-50">
           <BoxReveal textDirection="right" boxColor={boxColor} delay={revealDelay}>

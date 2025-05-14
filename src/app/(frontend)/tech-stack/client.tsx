@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import TechStackIcon from './components/tech-stack-icon'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import ForceLoading from '@/components/force-loading'
 
 type Props = {
   techStackDocs: TechStack
@@ -29,6 +30,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
 
   return (
     <>
+      <ForceLoading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{
