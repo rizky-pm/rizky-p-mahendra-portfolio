@@ -22,7 +22,7 @@ export default function NotFound() {
         {navItems.map((item) => (
           <li
             key={item.path}
-            className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
+            className="text-2xl md:text-3xl xl:text-4xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
           >
             <Link href={item.path}>{item.label}</Link>
           </li>
