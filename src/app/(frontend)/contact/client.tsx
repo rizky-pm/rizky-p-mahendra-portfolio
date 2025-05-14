@@ -33,7 +33,7 @@ const ContactClient = ({ contactDocs }: Props) => {
             <div className="flex flex-col gap-4">
               <RichText
                 data={contactDocs.description}
-                className="prose prose-sm sm:prose tracking-wide"
+                className="prose-sm 2xl:prose 3xl:prose-xl tracking-wide"
               />
             </div>
 

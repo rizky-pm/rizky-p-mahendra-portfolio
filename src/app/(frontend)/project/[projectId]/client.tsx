@@ -55,7 +55,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
           <div className="transition-all md:text-xl xl:text-2xl 2xl:text-4xl xl:leading-12 2xl:leading-16 text-center items-center justify-center flex flex-col gap-10 md:gap-20 xl:gap-30 2xl:gap-40">
             <RichText
               data={projectDetailDocs.description}
-              className="prose prose-sm sm:prose lg:prose-lg text-center text-xl md:text-4xl lg:text-6xl md:px-10 xl:px-40"
+              className="prose-sm 2xl:prose 3xl:prose-xl text-center text-xl md:text-4xl lg:text-6xl md:px-10 xl:px-40"
             />
             {projectImage ? (
               <Image

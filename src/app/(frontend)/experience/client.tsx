@@ -43,7 +43,7 @@ const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
 
               <RichText
                 data={experinecePageDocs.description}
-                className="prose prose-sm sm:prose tracking-wide"
+                className="prose-sm 2xl:prose 3xl:prose-xl tracking-wide"
               />
             </div>
           </div>

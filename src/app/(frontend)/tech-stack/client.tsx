@@ -38,7 +38,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
 
             <RichText
               data={techStackDocs.description}
-              className="prose prose-sm sm:prose tracking-wide"
+              className="prose-sm 2xl:prose 3xl:prose-xl"
             />
           </div>
 

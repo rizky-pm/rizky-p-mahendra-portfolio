@@ -35,7 +35,10 @@ const AboutMeClient = (props: Props) => {
             </h1>
 
             <div className="flex flex-col gap-4">
-              <RichText data={data.description} className="prose prose-sm sm:prose tracking-wide" />
+              <RichText
+                data={data.description}
+                className="prose-sm 2xl:prose 3xl:prose-xl tracking-wide"
+              />
             </div>
           </div>
 
@@ -50,7 +53,7 @@ const AboutMeClient = (props: Props) => {
                   ) {
                     const mediaObj = media as Media
                     const portraitClassname =
-                      'transition-all row-span-2 w-fit object-cover grayscale hover:grayscale-0 justify-self-end'
+                      'transition-all row-span-2 w-fit h-full object-cover grayscale hover:grayscale-0 justify-self-end'
 
                     return (
                       <Image
