@@ -1,12 +1,30 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useLoadingStore } from '@/store/useLoadingStore'
 
 // Start animation when user refresh or navigating using browser navigation
 const ForceLoading = () => {
   const { isLoading } = useLoadingStore()
+
+  useEffect(() => {
+    let overflowResetTimeout: NodeJS.Timeout
+
+    if (isLoading) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      document.body.style.overflow = 'hidden'
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      overflowResetTimeout = setTimeout(() => {
+        document.body.style.overflow = ''
+      }, 750)
+    }
+
+    return () => {
+      clearTimeout(overflowResetTimeout)
+    }
+  }, [isLoading])
 
   return (
     <AnimatePresence>
