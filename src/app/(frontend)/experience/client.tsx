@@ -53,7 +53,11 @@ const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
                 <div key={item.id} className="flex flex-col items-end text-right">
                   <h1
                     className="w-fit scroll-m-20 text-4xl md:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-extrabold tracking-tight uppercase link"
-                    onClick={() => push(`/experience/${_.toString(item.id)}`)}
+                    onClick={async () => {
+                      setIsLoading(true)
+                      await new Promise((resolve) => setTimeout(resolve, 500))
+                      push(`/experience/${_.toString(item.id)}`)
+                    }}
                   >
                     {item.position}
                   </h1>

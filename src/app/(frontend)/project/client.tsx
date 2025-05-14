@@ -82,7 +82,11 @@ const ProjectClient = (props: Props) => {
                       }
                     }}
                     onMouseLeave={() => isExtraLargeScreen && setThumbnailPreview(null)}
-                    onClick={() => push(`/project/${_.toString(item.id)}`)}
+                    onClick={async () => {
+                      setIsLoading(true)
+                      await new Promise((resolve) => setTimeout(resolve, 500))
+                      push(`/project/${_.toString(item.id)}`)
+                    }}
                   >
                     {item.title}
                   </h1>

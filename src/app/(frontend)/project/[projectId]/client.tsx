@@ -1,12 +1,13 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import _ from 'lodash'
 import { Media, Project } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import ForceLoading from '@/components/force-loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   projectDetailDocs: Project
@@ -16,6 +17,16 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
   const projectImage = Array.isArray(projectDetailDocs.media)
     ? (projectDetailDocs.media[0] as Media)
     : null
+
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
 
   if (!projectDetailDocs) return
 

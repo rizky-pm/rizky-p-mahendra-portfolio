@@ -1,18 +1,28 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import { motion } from 'motion/react'
 import { Experience } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import ForceLoading from '@/components/force-loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   experienceDetailDocs: Experience
 }
 
 const ExperienceDetailClient = ({ experienceDetailDocs }: Props) => {
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
   return (
     <>
       <ForceLoading />
