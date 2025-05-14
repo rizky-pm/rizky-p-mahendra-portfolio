@@ -54,18 +54,7 @@ const ProjectClient = (props: Props) => {
               />
               {isExtraLargeScreen && (
                 <AnimatePresence mode="wait">
-                  {typeof thumbnailPreview === 'string' ? (
-                    <motion.img
-                      key={thumbnailPreview}
-                      src={thumbnailPreview}
-                      alt=""
-                      className="w-full xl:h-[500px] 2xl:h-[600px] object-cover shadow"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.25 }}
-                    />
-                  ) : thumbnailPreview ? (
+                  {thumbnailPreview ? (
                     <motion.img
                       key={thumbnailPreview.id}
                       src={thumbnailPreview.url as string}
