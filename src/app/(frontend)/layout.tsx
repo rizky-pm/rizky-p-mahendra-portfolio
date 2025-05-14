@@ -1,4 +1,3 @@
-import Loading from '@/components/loading'
 import Navbar from '@/components/navbar'
 import React from 'react'
 
@@ -14,7 +13,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <>
       <Navbar />
       <main className="">{children}</main>
-      <Loading />
     </>
   )
 }

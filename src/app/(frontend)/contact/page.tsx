@@ -2,6 +2,14 @@ import React from 'react'
 import ContactClient from './client'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import { generateMeta } from '@/lib/seo/generateMetaData'
+
+export const generateMetadata = async () =>
+  generateMeta({
+    title: 'Contact',
+    description:
+      "Contact me for professional inquiries, collaboration opportunities, or project discussions. I'm available to connect and assist with your needs.",
+  })
 
 const Contact = async () => {
   const payload = await getPayload({ config: configPromise })
