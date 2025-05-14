@@ -59,7 +59,7 @@ const ProjectClient = (props: Props) => {
                       key={thumbnailPreview.id}
                       src={thumbnailPreview.url as string}
                       alt=""
-                      className="w-full h-[600px] object-cover shadow"
+                      className="w-full h-[28.125rem] 2xl:h-[37.5rem] object-fill 2xl:object-cover shadow"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
