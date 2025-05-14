@@ -1,20 +1,29 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'motion/react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Contact } from '@/payload-types'
 import Image from 'next/image'
-import Loading from '@/components/loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   contactDocs: Contact
 }
 
 const ContactClient = ({ contactDocs }: Props) => {
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
+
   return (
     <>
-      <Loading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

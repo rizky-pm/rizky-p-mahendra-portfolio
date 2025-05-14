@@ -1,13 +1,13 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import dayjs from 'dayjs'
 import _ from 'lodash'
 import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { Experience, ExperiencePage } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import Loading from '@/components/loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   experinecePageDocs: ExperiencePage
@@ -16,9 +16,18 @@ type Props = {
 
 const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
   const { push } = useRouter()
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
+
   return (
     <>
-      <Loading />
       <motion.section
         initial={{
           y: -30,

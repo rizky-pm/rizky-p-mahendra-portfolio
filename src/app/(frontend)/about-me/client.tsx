@@ -1,11 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 import { About, Media } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import Loading from '@/components/loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   data: About
@@ -13,12 +13,20 @@ type Props = {
 
 const AboutMeClient = (props: Props) => {
   const { data } = props
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
 
   if (!data) return
 
   return (
     <>
-      <Loading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

@@ -5,11 +5,11 @@ import { Marquee } from '@/components/magicui/marquee'
 import _ from 'lodash'
 import { motion } from 'motion/react'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import TechStackIcon from './components/tech-stack-icon'
-import Loading from '@/components/loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   techStackDocs: TechStack
@@ -17,10 +17,18 @@ type Props = {
 
 const TechStackClient = ({ techStackDocs }: Props) => {
   const { isExtraLargeScreen } = useBreakpoints()
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
 
   return (
     <>
-      <Loading />
       <motion.section
         initial={{ y: -30, opacity: 0 }}
         animate={{

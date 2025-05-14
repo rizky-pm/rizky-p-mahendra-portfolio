@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import { AnimatePresence, motion, Variants } from 'motion/react'
 import { navItems } from '@/constants'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 const underlineVariants: Variants = {
   initial: { scaleX: 0 },
@@ -19,21 +20,26 @@ const underlineVariants: Variants = {
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { isLoading, setIsLoading } = useLoadingStore()
   const { push } = useRouter()
   const { isSmallScren } = useBreakpoints()
 
   useEffect(() => {
-    if (isMenuOpen) {
+    let overflowResetTimeout: NodeJS.Timeout
+
+    if (isMenuOpen || isLoading) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = ''
+      overflowResetTimeout = setTimeout(() => {
+        document.body.style.overflow = ''
+      }, 750)
     }
 
     return () => {
-      document.body.style.overflow = ''
+      clearTimeout(overflowResetTimeout)
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, isLoading])
 
   return pathname !== '/' ? (
     <>
@@ -47,7 +53,13 @@ const Navbar = () => {
                 <motion.li
                   key={item.path}
                   className="relative flex items-center flex-col font-bold cursor-pointer focus:outline-none group"
-                  onClick={() => push(item.path)}
+                  onClick={async () => {
+                    setIsLoading(true)
+
+                    await new Promise((resolve) => setTimeout(resolve, 500))
+
+                    push(item.path)
+                  }}
                   initial="initial"
                   whileHover="hover"
                   animate={isActive ? 'hover' : 'initial'}
@@ -111,6 +123,31 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </nav>
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="absolute h-screen w-full bg-primary z-50 top-0 left-0 flex items-center justify-center"
+            initial={{ y: '-100%' }}
+            animate={{
+              y: '0',
+              transition: {
+                ease: 'easeInOut',
+                duration: 0.5,
+              },
+            }}
+            exit={{
+              y: '-100%',
+              transition: {
+                ease: 'easeInOut',
+                duration: 0.5,
+                delay: 0.5,
+              },
+            }}
+          >
+            <h1 className="text-white text-2xl tracking-wide">Loading...</h1>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   ) : null
 }

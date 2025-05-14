@@ -4,7 +4,6 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
 const TechStack = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
   const payload = await getPayload({ config: configPromise })
 
   const techStackData = await payload.find({

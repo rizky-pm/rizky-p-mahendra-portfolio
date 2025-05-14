@@ -1,13 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { useBreakpoints } from '@/hooks/useBreakpoints'
 import { useRouter } from 'next/navigation'
 import { Media, Project, ProjectPage } from '@/payload-types'
 import _ from 'lodash'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import Loading from '@/components/loading'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 type Props = {
   projectPageDocs: ProjectPage
@@ -18,15 +18,23 @@ const ProjectClient = (props: Props) => {
   const { projectPageDocs, projectsDocs } = props
 
   const [thumbnailPreview, setThumbnailPreview] = useState<Media | null>(null)
+  const { setIsLoading } = useLoadingStore()
 
   const { isExtraLargeScreen } = useBreakpoints()
   const { push } = useRouter()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
 
   if (!projectsDocs.length) return
 
   return (
     <>
-      <Loading />
       <motion.section
         initial={{
           y: -30,
