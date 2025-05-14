@@ -30,7 +30,9 @@ const Loading = () => {
               },
             }}
           >
-            <h1 className="text-white text-2xl tracking-wide">Loading...</h1>
+            <h1 className="text-foreground text-6xl md:text-7xl xl:text-8xl 2xl:text-[10rem] tracking-wide uppercase font-bold">
+              Loading
+            </h1>
           </motion.div>
         )}
       </AnimatePresence>
