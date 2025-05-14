@@ -1,12 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import './styles.css'
-import { BoxReveal } from '@/components/magicui/box-reveal'
+import { BoxReveal } from '@/app/(frontend)/components/magicui/box-reveal'
 import { Hero } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import Loading from '@/components/loading'
-import NavigationList from '@/components/navigation-list'
+import NavigationList from '@/app/(frontend)/components/navigation-list'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 const boxColor = 'oklch(0.208 0.042 265.755)'
 const revealDelay = 1.25
@@ -18,10 +18,18 @@ type Props = {
 export default function HomePageClient(props: Props) {
   const { data } = props
 
+  const { setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
+
   return data ? (
     <>
-      <Loading />
-
       <div className="h-full flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
         <div className="container flex flex-col gap-2 -z-50">
           <BoxReveal textDirection="right" boxColor={boxColor} delay={revealDelay}>

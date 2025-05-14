@@ -1,10 +1,14 @@
 // app/not-found.tsx
 'use client'
 
-import { navItems } from '@/components/navbar'
-import Link from 'next/link'
+import { navItems } from '@/constants'
+import { useLoadingStore } from '@/store/useLoadingStore'
+import { useRouter } from 'next/navigation'
 
 export default function NotFound() {
+  const { setIsLoading } = useLoadingStore()
+  const { push } = useRouter()
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
       <div className="container flex flex-col gap-2">
@@ -23,8 +27,13 @@ export default function NotFound() {
           <li
             key={item.path}
             className="text-2xl md:text-3xl xl:text-4xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
+            onClick={async () => {
+              setIsLoading(true)
+              await new Promise((resolve) => setTimeout(resolve, 500))
+              push(item.path)
+            }}
           >
-            <Link href={item.path}>{item.label}</Link>
+            {item.label}
           </li>
         ))}
       </ul>

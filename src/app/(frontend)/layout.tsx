@@ -1,5 +1,6 @@
 import React from 'react'
-import Navbar from '@/components/navbar'
+import Navbar from '@/app/(frontend)/components/navbar'
+import Loading from '@/app/(frontend)/components/loading'
 
 export const metadata = {
   title: 'Rizky P. Mahendra | Portfolio',
@@ -13,6 +14,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <>
       <Navbar />
       <main className="">{children}</main>
+      <Loading />
     </>
   )
 }

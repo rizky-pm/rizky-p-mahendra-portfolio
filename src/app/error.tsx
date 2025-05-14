@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { navItems } from '@/components/navbar'
 import Link from 'next/link'
+import { navItems } from '@/constants'
 
 const ErrorPage = ({ error }: { error: Error }) => {
   useEffect(() => {
