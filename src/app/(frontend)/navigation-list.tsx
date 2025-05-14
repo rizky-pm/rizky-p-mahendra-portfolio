@@ -2,36 +2,45 @@
 
 import React, { useMemo } from 'react'
 import { motion } from 'motion/react'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { navItems } from '@/components/navbar'
-
-const listVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      delayChildren: 2.5,
-      staggerChildren: 0.2,
-    },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-}
+import Link from 'next/link'
+import _ from 'lodash'
 
 const NavigationList = () => {
-  const { push } = useRouter()
+  const pathname = usePathname()
+  console.log(pathname)
 
   const navigation = useMemo(() => {
-    return navItems.filter((item) => item.path !== '/')
-  }, [])
+    const existsInNav = _.some(navItems, (item) => item.path === pathname)
+
+    if (pathname === '/') {
+      return navItems.filter((item) => item.path !== '/')
+    }
+
+    if (!existsInNav) {
+      return navItems
+    }
+
+    return navItems
+  }, [pathname])
+
+  const isValidRoute = _.some(navItems, (item) => item.path === pathname)
+  console.log(isValidRoute)
 
   return (
     <>
       <motion.ul
         className="container flex flex-col gap-2 md:gap-4 justify-between xl:flex-row"
-        variants={listVariants}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              delayChildren: isValidRoute ? 2.5 : 0,
+              staggerChildren: 0.2,
+            },
+          },
+        }}
         initial="hidden"
         animate="visible"
       >
@@ -39,10 +48,12 @@ const NavigationList = () => {
           <motion.li
             key={item.path}
             className="text-3xl md:text-5xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl link uppercase text-primary cursor-pointer"
-            variants={itemVariants}
-            onClick={() => push(item.path)}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1 },
+            }}
           >
-            {item.label}
+            <Link href={item.path}>{item.label}</Link>
           </motion.li>
         ))}
       </motion.ul>

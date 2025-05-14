@@ -18,14 +18,11 @@ const ErrorPage = ({ error }: { error: Error }) => {
           We encountered an unexpected issue. Please try again later.
         </p>
 
-        {/* Optional: Show error details for support or logging */}
         <div className="text-sm mb-10">
           <strong>Error ID:</strong> {error.message || 'Unknown error'}
         </div>
-
-        {/* Navigation List */}
-        <NavigationList />
       </div>
+      <NavigationList />
     </div>
   )
 }
