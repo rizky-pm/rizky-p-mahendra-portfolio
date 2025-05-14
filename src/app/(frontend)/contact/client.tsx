@@ -35,8 +35,8 @@ const ContactClient = ({ contactDocs }: Props) => {
         }}
         className="w-full md:min-h-screen px-5 sm:px-20 2xl:px-40 sm:py-10 2xl:py-20 sm:flex sm:flex-col sm:justify-center sm:items-center"
       >
-        <div className="w-full container flex flex-col gap-10 mb-auto xl:sticky top-20 left-0 h-full md:justify-center">
-          <div className="flex flex-col gap-4 xl:gap-8 xl:w-2/5">
+        <div className="w-full container flex flex-col gap-10 xl:sticky xl:mb-auto top-20 left-0 h-full">
+          <div className="flex flex-col gap-4 xl:gap-8 xl:w-2/4">
             <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase text-primary">
               {contactDocs.title}
             </h1>
