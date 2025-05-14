@@ -58,7 +58,7 @@ const ExperienceDetailClient = ({ experienceDetailDocs }: Props) => {
 
             <div className="container flex justify-center space-y-4 transition-all">
               <RichText
-                className="prose-sm 2xl:prose 3xl:prose-xl tracking-wide"
+                className="prose text-sm leading-6 2xl:prose 3xl:prose-xl tracking-wide"
                 data={experienceDetailDocs.description}
               />
             </div>
