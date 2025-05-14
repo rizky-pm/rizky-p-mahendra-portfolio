@@ -2,13 +2,15 @@
 
 import React, { useMemo } from 'react'
 import { motion } from 'motion/react'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import _ from 'lodash'
 import { navItems } from '@/constants'
+import { useLoadingStore } from '@/store/useLoadingStore'
 
 const NavigationList = () => {
   const pathname = usePathname()
+  const { setIsLoading } = useLoadingStore()
+  const { push } = useRouter()
 
   const navigation = useMemo(() => {
     if (pathname === '/') {
@@ -42,8 +44,13 @@ const NavigationList = () => {
               hidden: { opacity: 0 },
               visible: { opacity: 1 },
             }}
+            onClick={async () => {
+              setIsLoading(true)
+              await new Promise((resolve) => setTimeout(resolve, 500))
+              push(item.path)
+            }}
           >
-            <Link href={item.path}>{item.label}</Link>
+            {item.label}
           </motion.li>
         ))}
       </motion.ul>

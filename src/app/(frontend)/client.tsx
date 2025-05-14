@@ -2,11 +2,11 @@
 
 import React, { useEffect } from 'react'
 import './styles.css'
-import { BoxReveal } from '@/app/(frontend)/components/magicui/box-reveal'
 import { Hero } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import NavigationList from '@/app/(frontend)/components/navigation-list'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import { BoxReveal } from '@/components/magicui/box-reveal'
+import NavigationList from '@/components/navigation-list'
 
 const boxColor = 'oklch(0.208 0.042 265.755)'
 const revealDelay = 1.25
