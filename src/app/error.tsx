@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 import NavigationListFull from '@/components/navigation-list-full'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { useLoadingStore } from '@/store/useLoadingStore'
@@ -12,7 +12,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 })
 
 const ErrorPage = ({ error }: { error: Error }) => {
-  const { isLoading, setIsLoading } = useLoadingStore()
+  const { setIsLoading } = useLoadingStore()
 
   useEffect(() => {
     const toggleLoading = async () => {
