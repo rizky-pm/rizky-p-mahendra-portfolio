@@ -68,7 +68,7 @@ const Navbar = () => {
 
                   <motion.div
                     variants={underlineVariants}
-                    className="absolute bottom-[-6px] left-0 h-[2px] w-full bg-current origin-left"
+                    className="absolute bottom-[--0.375rem] left-0 h-[.1875rem] w-full bg-current origin-left"
                     style={{ transformOrigin: 'left' }}
                   />
                 </motion.li>
