@@ -44,7 +44,7 @@ const ExperienceDetailClient = ({ experienceDetailDocs }: Props) => {
       >
         {experienceDetailDocs ? (
           <div className="w-full flex flex-col xl:justify-center xl:items-center gap-10 md:gap-20 xl:gap-30 2xl:gap-20">
-            <div className="bg-background flex flex-col text-foreground  items-center h-[50dvh] sm:h-[60dvh] xl:h-[55dvh] w-full gap-2 p-5">
+            <div className="bg-background flex flex-col text-foreground items-center h-[45vh] sm:h-[50vh] xl:h-[55vh] w-full gap-2 p-5">
               <div className="flex flex-col gap-2 xl:flex-row xl:gap-0 justify-between items-center text-sm text-center xl:text-left 2xl:text-xl tracking-widest uppercase w-full">
                 <p>{experienceDetailDocs.companyName}</p>
                 <p>
