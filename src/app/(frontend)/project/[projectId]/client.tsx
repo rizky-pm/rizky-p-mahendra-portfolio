@@ -9,6 +9,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import ForceLoading from '@/components/force-loading'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import { Code, CodeXml, SquareArrowOutUpRight } from 'lucide-react'
+import { useBreakpoints } from '@/hooks/useBreakpoints'
 
 type Props = {
   projectDetailDocs: Project
@@ -29,6 +30,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
     : null
 
   const { setIsLoading } = useLoadingStore()
+  const { isMediumScreen } = useBreakpoints()
 
   useEffect(() => {
     const toggleLoading = async () => {
@@ -61,7 +63,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
       >
         <div className="w-full flex flex-col xl:justify-center xl:items-center gap-10 md:gap-20 xl:gap-30 2xl:gap-40">
           <div className="bg-background flex flex-col text-foreground items-center h-[45vh] sm:h-[50vh] xl:h-[55vh] w-full gap-2 p-5">
-            <div className="flex flex-wrap gap-x-4 justify-center xl:gap-x-6 px-10">
+            <div className="flex flex-wrap gap-x-4 justify-center xl:gap-x-6 px-2">
               {projectDetailDocs.skills?.map((skill) => (
                 <span key={skill.id} className="text-[10px] xl:text-base uppercase tracking-widest">
                   {skill.skill}
@@ -90,18 +92,21 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
               />
             ) : null}
 
-            <div className="w-full flex gap-4 justify-center items-center sm:gap-8 xl:gap-16 py-5">
+            <div className="w-full flex items-center gap-x-6 justify-center sm:gap-8 xl:gap-16 py-5">
               {[
                 {
                   href: projectDetailDocs.liveUrl,
+                  label: 'Live URL',
                   icon: <SquareArrowOutUpRight className="w-6 h-6 xl:w-8 xl:h-8" />,
                 },
                 {
                   href: projectDetailDocs.frontendRepo,
+                  label: 'Front End Code',
                   icon: <Code className="w-6 h-6 xl:w-8 xl:h-8" />,
                 },
                 projectDetailDocs.backendRepo && {
                   href: projectDetailDocs.backendRepo,
+                  label: 'Back End Code',
                   icon: <CodeXml className="w-6 h-6 xl:w-8 xl:h-8" />,
                 },
               ]
@@ -111,16 +116,17 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
                     key={index}
                     target="_blank"
                     href={link.href}
-                    className="relative group flex flex-col items-center p-2 text-background cursor-pointer transition-all"
+                    className="relative group flex gap-2 xl:text-lg items-center md:text-background cursor-pointer transition-all p-2 bg-background md:bg-transparent text-foreground rounded hover:bg-accent md:hover:bg-foreground md:hover:text-current"
                     initial="initial"
                     whileHover="hover"
                   >
                     {link.icon}
+                    {isMediumScreen ? link.label : null}
 
                     <motion.div
                       variants={underlineVariants}
                       transition={{ duration: 0.3 }}
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-current scale-x-0 group-hover:scale-x-100 origin-left"
+                      className="absolute bottom-0 left-0 w-full h-[.1875rem] bg-current scale-x-0 group-hover:scale-x-100 origin-left"
                       style={{ transformOrigin: 'left' }}
                     />
                   </motion.a>
