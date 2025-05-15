@@ -41,7 +41,7 @@ const ForceLoading = () => {
             },
           }}
         >
-          <h1 className="text-foreground text-6xl md:text-7xl xl:text-8xl 2xl:text-[10rem] tracking-wide uppercase font-bold">
+          <h1 className="text-foreground text-6xl md:text-7xl xl:text-8xl 2xl:text-[10rem] uppercase font-bold tracking-tighter">
             Loading
           </h1>
         </motion.div>
