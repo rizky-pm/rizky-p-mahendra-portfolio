@@ -7,7 +7,7 @@ type Options = {
 
 export const generateMeta = async ({ title, description }: Options): Promise<Metadata> => {
   return {
-    title: title ? `RPM - ${title}` : 'Rizky Putra Mahendra',
+    title: title ? `Rizky Putra Mahendra - ${title}` : 'Rizky Putra Mahendra',
     description: description,
   }
 }
