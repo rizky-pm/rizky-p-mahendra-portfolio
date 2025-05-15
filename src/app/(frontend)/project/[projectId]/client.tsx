@@ -1,16 +1,26 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { motion } from 'motion/react'
+import { motion, Variants } from 'motion/react'
 import Image from 'next/image'
 import _ from 'lodash'
 import { Media, Project } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import ForceLoading from '@/components/force-loading'
 import { useLoadingStore } from '@/store/useLoadingStore'
+import { Code, CodeXml, SquareArrowOutUpRight } from 'lucide-react'
 
 type Props = {
   projectDetailDocs: Project
+}
+
+const underlineVariants: Variants = {
+  initial: { scaleX: 0 },
+  active: { scaleX: 1 },
+  hover: {
+    scaleX: 1,
+    transition: { duration: 0.3, ease: 'easeInOut' },
+  },
 }
 
 const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
@@ -29,6 +39,8 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
   }, [setIsLoading])
 
   if (!projectDetailDocs) return
+
+  console.log(projectDetailDocs)
 
   return (
     <>
@@ -80,27 +92,40 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
               />
             ) : null}
 
-            <div className="w-full flex items-center justify-center gap-4 sm:gap-8 xl:gap-16">
-              <a
-                href={projectDetailDocs.liveUrl as string}
-                className="hover:-skew-x-15 transition-all cursor-pointer underline hover:no-underline"
-              >
-                Live Demo
-              </a>
-              <a
-                href={projectDetailDocs.frontendRepo as string}
-                className="hover:-skew-x-15 transition-all cursor-pointer underline hover:no-underline"
-              >
-                Frontend Code
-              </a>
-              {(projectDetailDocs.backendRepo as string) ? (
-                <a
-                  href={projectDetailDocs.backendRepo as string}
-                  className="hover:-skew-x-15 transition-all cursor-pointer underline hover:no-underline"
-                >
-                  Backend Code
-                </a>
-              ) : null}
+            <div className="w-full flex gap-4 justify-center items-center sm:gap-8 xl:gap-16 py-5">
+              {[
+                {
+                  href: projectDetailDocs.liveUrl,
+                  icon: <SquareArrowOutUpRight className="w-6 h-6 xl:w-8 xl:h-8" />,
+                },
+                {
+                  href: projectDetailDocs.frontendRepo,
+                  icon: <Code className="w-6 h-6 xl:w-8 xl:h-8" />,
+                },
+                projectDetailDocs.backendRepo && {
+                  href: projectDetailDocs.backendRepo,
+                  icon: <CodeXml className="w-6 h-6 xl:w-8 xl:h-8" />,
+                },
+              ]
+                .filter(Boolean)
+                .map((link: any, index) => (
+                  <motion.a
+                    key={index}
+                    href={link.href}
+                    className="relative group flex flex-col items-center p-2 text-background cursor-pointer transition-all"
+                    initial="initial"
+                    whileHover="hover"
+                  >
+                    {link.icon}
+
+                    <motion.div
+                      variants={underlineVariants}
+                      transition={{ duration: 0.3 }}
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-current scale-x-0 group-hover:scale-x-100 origin-left"
+                      style={{ transformOrigin: 'left' }}
+                    />
+                  </motion.a>
+                ))}
             </div>
           </div>
         </div>
