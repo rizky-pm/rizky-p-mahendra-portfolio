@@ -63,7 +63,7 @@ const AboutMeClient = (props: Props) => {
                   ) {
                     const mediaObj = media as Media
                     const portraitClassname =
-                      'transition-all row-span-2 w-fit h-full object-cover grayscale hover:grayscale-0 justify-self-end'
+                      'transition-all row-span-2 w-fit h-full object-cover justify-self-end'
 
                     return (
                       <Image
@@ -75,7 +75,7 @@ const AboutMeClient = (props: Props) => {
                         className={
                           index === 0
                             ? portraitClassname
-                            : 'transition-all w-full 2xl:w-fit h-full 2xl:h-full object-cover grayscale hover:grayscale-0'
+                            : 'transition-all w-full 2xl:w-fit h-full 2xl:h-full object-cover'
                         }
                       />
                     )
