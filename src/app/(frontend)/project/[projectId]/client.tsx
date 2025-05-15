@@ -40,8 +40,6 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
 
   if (!projectDetailDocs) return
 
-  console.log(projectDetailDocs)
-
   return (
     <>
       <ForceLoading />

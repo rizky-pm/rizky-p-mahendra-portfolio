@@ -7,6 +7,11 @@ import { Contact } from '@/payload-types'
 import Image from 'next/image'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import ForceLoading from '@/components/force-loading'
+import LinkedInIcon from '@/assets/linkedin-icon'
+import GithubIcon from '@/assets/github-icon'
+import GmailIcon from '@/assets/gmail-icon'
+import GoogleDriveIcon from '@/assets/google-drive-icon'
+import _ from 'lodash'
 
 type Props = {
   contactDocs: Contact
@@ -50,29 +55,17 @@ const ContactClient = ({ contactDocs }: Props) => {
 
             <div className="flex items-center gap-8">
               {contactDocs.contactLinks.map((contact) => {
-                const icon = contact.icon
-
-                if (icon && typeof icon === 'object' && 'url' in icon) {
-                  return (
-                    <a
-                      key={contact.id}
-                      href={contact.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cursor-pointer transition-all duration-300 underline xl:no-underline hover:scale-110"
-                    >
-                      <Image
-                        width={512}
-                        height={512}
-                        src={icon.url as string}
-                        alt={icon.alt || contact.platform}
-                        className="w-8 h-8"
-                      />
-                    </a>
-                  )
-                }
-
-                return null
+                return (
+                  <a
+                    key={contact.id}
+                    href={contact.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer transition-all duration-300 underline xl:no-underline hover:scale-110"
+                  >
+                    {renderIcon(contact.platform)}
+                  </a>
+                )
               })}
             </div>
           </div>
@@ -80,6 +73,25 @@ const ContactClient = ({ contactDocs }: Props) => {
       </motion.section>
     </>
   )
+}
+
+const renderIcon = (platform: string) => {
+  switch (_.toLower(platform)) {
+    case 'linkedin':
+      return <LinkedInIcon className="w-8 h-8 2xl:w-10 2xl:h-10 text-background" />
+
+    case 'github':
+      return <GithubIcon className="w-8 h-8 2xl:w-10 2xl:h-10 text-background" />
+
+    case 'email':
+      return <GmailIcon className="w-8 h-8 2xl:w-10 2xl:h-10 text-background" />
+
+    case 'resume':
+      return <GoogleDriveIcon className="w-8 h-8 2xl:w-10 2xl:h-10 text-background" />
+
+    default:
+      break
+  }
 }
 
 export default ContactClient
