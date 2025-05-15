@@ -50,7 +50,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
         className="w-full px-5 sm:px-20 2xl:px-30 sm:py-10 min-h-screen sm:flex sm:justify-center sm:items-center"
       >
         <div className="w-full flex flex-col xl:justify-center xl:items-center gap-10 md:gap-20 xl:gap-30 2xl:gap-20">
-          <div className="bg-primary flex flex-col  -foreground items-center h-[50dvh] sm:h-[60dvh] xl:h-[55dvh] w-full gap-2 p-5">
+          <div className="bg-background flex flex-col text-foreground  items-center h-[50dvh] sm:h-[60dvh] xl:h-[55dvh] w-full gap-2 p-5">
             <div className="flex flex-wrap gap-x-4 justify-center xl:gap-x-6 px-10">
               {projectDetailDocs.skills?.map((skill) => (
                 <span key={skill.id} className="text-[10px] xl:text-base uppercase tracking-widest">
@@ -75,6 +75,8 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
                 src={projectImage.url as string}
                 alt={projectImage.alt}
                 className="xl:w-full 2xl:w-[78.125rem] xl:h-[93.75rem]"
+                loading="eager"
+                priority
               />
             ) : null}
 

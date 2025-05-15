@@ -65,6 +65,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
                           height={300}
                           src={item.url as string}
                           alt={item.alt}
+                          priority
                           loading="eager"
                         />
                       </TechStackIcon>
