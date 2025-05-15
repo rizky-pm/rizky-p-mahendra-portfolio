@@ -11,7 +11,7 @@ export const generateMetadata = async () =>
   })
 
 const AboutMePage = async () => {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: configPromisess })
 
   const data = await payload.find({
     collection: 'about',

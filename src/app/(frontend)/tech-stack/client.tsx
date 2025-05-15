@@ -54,7 +54,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
 
           <div className="flex xl:flex-col gap-8 xl:gap-16 justify-center xl:justify-start h-[60vh] md:h-[70vh] xl:h-auto">
             {techStackDocs.iconBig?.length ? (
-              <Marquee className="[--duration:40s]" vertical={!isExtraLargeScreen}>
+              <Marquee className="[--duration:60s]" vertical={!isExtraLargeScreen}>
                 {techStackDocs.iconBig.map((item) => {
                   if (typeof item === 'object' && item !== null && 'url' in item && 'id' in item) {
                     // Check if the item is a Media object
@@ -70,7 +70,7 @@ const TechStackClient = ({ techStackDocs }: Props) => {
             ) : null}
 
             {techStackDocs.iconSmall?.length ? (
-              <Marquee reverse className="[--duration:15s]" vertical={!isExtraLargeScreen}>
+              <Marquee reverse className="[--duration:25s]" vertical={!isExtraLargeScreen}>
                 {techStackDocs.iconSmall.map((item) => {
                   if (typeof item === 'object' && item !== null && 'url' in item && 'id' in item) {
                     // Check if the item is a Media object

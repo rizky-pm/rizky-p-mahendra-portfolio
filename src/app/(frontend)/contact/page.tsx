@@ -25,6 +25,8 @@ const Contact = async () => {
     throw new Error('Contact data is not found')
   }
 
+  console.log(docs[0])
+
   return <ContactClient contactDocs={docs[0]} />
 }
 

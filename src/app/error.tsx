@@ -1,18 +1,35 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import NavigationListFull from '@/components/navigation-list-full'
+import { Plus_Jakarta_Sans } from 'next/font/google'
+import { useLoadingStore } from '@/store/useLoadingStore'
+import Loading from '@/components/loading'
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+})
 
 const ErrorPage = ({ error }: { error: Error }) => {
+  const { isLoading, setIsLoading } = useLoadingStore()
+
+  useEffect(() => {
+    const toggleLoading = async () => {
+      setIsLoading(false)
+    }
+
+    toggleLoading()
+  }, [setIsLoading])
+
   useEffect(() => {
     console.error('An error occurred:', error)
   }, [error])
 
   return (
-    <>
+    <main className={`flex flex-col relative ${plusJakartaSans.className}`}>
       <motion.div
-        className="absolute h-screen w-full bg-primary z-50 top-0 left-0 flex items-center justify-center"
+        className="absolute h-screen w-full bg-background z-50 top-0 left-0 flex items-center justify-center"
         initial={{ y: 0 }}
         animate={{
           y: '-100%',
@@ -23,7 +40,9 @@ const ErrorPage = ({ error }: { error: Error }) => {
           },
         }}
       >
-        <h1 className="text-white text-2xl tracking-wide">Loading...</h1>
+        <h1 className="text-foreground text-6xl md:text-7xl xl:text-8xl 2xl:text-[10rem] tracking-wide uppercase font-bold">
+          Loading
+        </h1>
       </motion.div>
       <div className="min-h-screen flex flex-col justify-center items-center gap-10 w-full px-10 xl:px-0">
         <div className="container flex flex-col gap-2">
@@ -37,7 +56,9 @@ const ErrorPage = ({ error }: { error: Error }) => {
 
         <NavigationListFull />
       </div>
-    </>
+
+      <Loading />
+    </main>
   )
 }
 

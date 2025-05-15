@@ -1,18 +1,23 @@
-import Navbar from '@/components/navbar'
 import React from 'react'
+import { Plus_Jakarta_Sans } from 'next/font/google'
+import './styles.css'
+import Loading from '@/components/loading'
+import Navbar from '@/components/navbar'
 
-export const metadata = {
-  title: 'Rizky P. Mahendra | Portfolio',
-  description: "Rizky's Portfolio",
-}
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+})
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <>
-      <Navbar />
-      <main className="">{children}</main>
-    </>
+    <html lang="en">
+      <body className={`${plusJakartaSans.className}`}>
+        <Loading />
+        <main>{children}</main>
+        <Navbar />
+      </body>
+    </html>
   )
 }
