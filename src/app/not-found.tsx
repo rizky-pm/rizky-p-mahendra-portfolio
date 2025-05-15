@@ -3,6 +3,7 @@ import Loading from '@/components/loading'
 import NavigationListFull from '@/components/navigation-list-full'
 import { generateMeta } from '@/lib/seo/generateMetaData'
 import { Plus_Jakarta_Sans } from 'next/font/google'
+import '@/app/(frontend)/styles.css'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],

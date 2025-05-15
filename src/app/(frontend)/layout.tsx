@@ -13,10 +13,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.className}`}>
+      <body className={`${plusJakartaSans.className} flex flex-col relative`}>
         <Loading />
-        <main>{children}</main>
         <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   )

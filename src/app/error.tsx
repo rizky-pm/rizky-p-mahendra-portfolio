@@ -6,6 +6,7 @@ import NavigationListFull from '@/components/navigation-list-full'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import Loading from '@/components/loading'
+import '@/app/(frontend)/styles.css'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
