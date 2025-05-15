@@ -60,7 +60,13 @@ const TechStackClient = ({ techStackDocs }: Props) => {
                     // Check if the item is a Media object
                     return (
                       <TechStackIcon isBig key={item.id}>
-                        <Image width={300} height={300} src={item.url as string} alt={item.alt} />
+                        <Image
+                          width={300}
+                          height={300}
+                          src={item.url as string}
+                          alt={item.alt}
+                          loading="eager"
+                        />
                       </TechStackIcon>
                     )
                   }
@@ -76,7 +82,14 @@ const TechStackClient = ({ techStackDocs }: Props) => {
                     // Check if the item is a Media object
                     return (
                       <TechStackIcon isBig={false} key={item.url}>
-                        <Image width={150} height={150} src={item.url as string} alt={item.alt} />
+                        <Image
+                          width={150}
+                          height={150}
+                          src={item.url as string}
+                          alt={item.alt}
+                          priority
+                          loading="eager"
+                        />
                       </TechStackIcon>
                     )
                   }
