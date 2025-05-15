@@ -36,6 +36,10 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - '5432:5432'
+    environment:
+      POSTGRES_USER: cosmo
+      POSTGRES_PASSWORD: qwerty666
+      POSTGRES_DB: rizky-p-mahendra-db
 
 volumes:
   data:
