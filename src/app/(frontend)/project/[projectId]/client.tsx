@@ -111,6 +111,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
                 .map((link: any, index) => (
                   <motion.a
                     key={index}
+                    target="_blank"
                     href={link.href}
                     className="relative group flex flex-col items-center p-2 text-background cursor-pointer transition-all"
                     initial="initial"
