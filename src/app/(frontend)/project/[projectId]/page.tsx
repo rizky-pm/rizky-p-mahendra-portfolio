@@ -30,7 +30,7 @@ export const generateMetadata = async ({ params }: Props) => {
 
 const ProjectDetail = async ({ params }: Props) => {
   const payload = await getPayload({ config: configPromise })
-  const { projectId } = await params
+  const { projectId } = params
 
   try {
     const project = await payload.findByID({

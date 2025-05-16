@@ -32,7 +32,7 @@ export const generateMetadata = async ({ params }: Props) => {
 
 const ExperienceDetail = async ({ params }: Props) => {
   const payload = await getPayload({ config: configPromise })
-  const { experienceId } = await params
+  const { experienceId } = params
 
   try {
     const experience = await payload.findByID({
