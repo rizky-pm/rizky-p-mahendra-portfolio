@@ -1,33 +1,47 @@
-version: '3.8'
+version: '3'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: next-payload-app
-    restart: always
+  payload:
+    image: node:18-alpine
     ports:
       - '4000:4000'
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
+    depends_on:
+      # - mongo
+      - postgres
     env_file:
       - .env
-    depends_on:
-      - postgres
-    environment:
-      NODE_ENV: production
 
+  # Ensure your DATABASE_URI uses 'mongo' as the hostname ie. mongodb://mongo/my-db-name
+  # mongo:
+  #   image: mongo:latest
+  #   ports:
+  #     - '27017:27017'
+  #   command:
+  #     - --storageEngine=wiredTiger
+  #   volumes:
+  #     - data:/data/db
+  #   logging:
+  #     driver: none
+
+  # Uncomment the following to use postgres
   postgres:
-    image: postgres:latest
-    container_name: postgres-db
     restart: always
-    ports:
-      - '5432:5432'
+    image: postgres:latest
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_USER: cosmo
       POSTGRES_PASSWORD: qwerty666
       POSTGRES_DB: rizky-p-mahendra-db
 
 volumes:
+  data:
   pgdata:
+  node_modules:
