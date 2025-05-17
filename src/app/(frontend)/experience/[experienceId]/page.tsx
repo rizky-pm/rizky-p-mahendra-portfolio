@@ -6,18 +6,17 @@ import { notFound } from 'next/navigation'
 import { generateMeta } from '@/lib/seo/generateMetaData'
 import _ from 'lodash'
 
-type Props = {
-  params: {
-    experienceId: string
-  }
-}
-
-export const generateMetadata = async ({ params }: Props) => {
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ experienceId: string }>
+}) => {
+  const { experienceId } = await params
   const payload = await getPayload({ config: configPromise })
 
   const experience = await payload.findByID({
     collection: 'experience',
-    id: params.experienceId,
+    id: experienceId,
   })
 
   if (!experience) return notFound()
@@ -30,9 +29,9 @@ export const generateMetadata = async ({ params }: Props) => {
   })
 }
 
-const ExperienceDetail = async ({ params }: Props) => {
+const ExperienceDetail = async ({ params }: { params: Promise<{ experienceId: string }> }) => {
+  const { experienceId } = await params
   const payload = await getPayload({ config: configPromise })
-  const { experienceId } = params
 
   try {
     const experience = await payload.findByID({

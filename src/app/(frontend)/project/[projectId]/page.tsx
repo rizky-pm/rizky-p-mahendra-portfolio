@@ -6,18 +6,13 @@ import { notFound } from 'next/navigation'
 import { generateMeta } from '@/lib/seo/generateMetaData'
 import _ from 'lodash'
 
-type Props = {
-  params: {
-    projectId: string
-  }
-}
-
-export const generateMetadata = async ({ params }: Props) => {
+export const generateMetadata = async ({ params }: { params: Promise<{ projectId: string }> }) => {
+  const { projectId } = await params
   const payload = await getPayload({ config: configPromise })
 
   const project = await payload.findByID({
     collection: 'projects',
-    id: params.projectId,
+    id: projectId,
   })
 
   if (!project) return notFound()
@@ -28,9 +23,9 @@ export const generateMetadata = async ({ params }: Props) => {
   })
 }
 
-const ProjectDetail = async ({ params }: Props) => {
+const ProjectDetail = async ({ params }: { params: Promise<{ projectId: string }> }) => {
+  const { projectId } = await params
   const payload = await getPayload({ config: configPromise })
-  const { projectId } = params
 
   try {
     const project = await payload.findByID({

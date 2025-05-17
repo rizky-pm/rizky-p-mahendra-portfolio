@@ -15,6 +15,12 @@ type Props = {
   projectDetailDocs: Project
 }
 
+type ProjectLink = {
+  href: string
+  label: string
+  icon: React.ReactNode
+}
+
 const underlineVariants: Variants = {
   initial: { scaleX: 0 },
   active: { scaleX: 1 },
@@ -39,6 +45,24 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
 
     toggleLoading()
   }, [setIsLoading])
+
+  const links: ProjectLink[] = [
+    {
+      href: projectDetailDocs.liveUrl,
+      label: 'Live URL',
+      icon: <SquareArrowOutUpRight className="w-6 h-6 xl:w-8 xl:h-8" />,
+    },
+    {
+      href: projectDetailDocs.frontendRepo,
+      label: 'Front End Code',
+      icon: <Code className="w-6 h-6 xl:w-8 xl:h-8" />,
+    },
+    projectDetailDocs.backendRepo && {
+      href: projectDetailDocs.backendRepo,
+      label: 'Back End Code',
+      icon: <CodeXml className="w-6 h-6 xl:w-8 xl:h-8" />,
+    },
+  ].filter(Boolean) as ProjectLink[]
 
   if (!projectDetailDocs) return
 
@@ -93,44 +117,26 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
             ) : null}
 
             <div className="w-full flex items-center gap-x-6 justify-center sm:gap-8 xl:gap-16 py-5">
-              {[
-                {
-                  href: projectDetailDocs.liveUrl,
-                  label: 'Live URL',
-                  icon: <SquareArrowOutUpRight className="w-6 h-6 xl:w-8 xl:h-8" />,
-                },
-                {
-                  href: projectDetailDocs.frontendRepo,
-                  label: 'Front End Code',
-                  icon: <Code className="w-6 h-6 xl:w-8 xl:h-8" />,
-                },
-                projectDetailDocs.backendRepo && {
-                  href: projectDetailDocs.backendRepo,
-                  label: 'Back End Code',
-                  icon: <CodeXml className="w-6 h-6 xl:w-8 xl:h-8" />,
-                },
-              ]
-                .filter(Boolean)
-                .map((link: any, index) => (
-                  <motion.a
-                    key={index}
-                    target="_blank"
-                    href={link.href}
-                    className="relative group flex gap-2 xl:text-lg items-center md:text-background cursor-pointer transition-all p-2 bg-background md:bg-transparent text-foreground rounded hover:bg-accent md:hover:bg-foreground md:hover:text-current"
-                    initial="initial"
-                    whileHover="hover"
-                  >
-                    {link.icon}
-                    {isMediumScreen ? link.label : null}
+              {links.map((link, index) => (
+                <motion.a
+                  key={index}
+                  target="_blank"
+                  href={link.href}
+                  className="relative group flex gap-2 xl:text-lg items-center md:text-background cursor-pointer transition-all p-2 bg-background md:bg-transparent text-foreground rounded hover:bg-accent md:hover:bg-foreground md:hover:text-current"
+                  initial="initial"
+                  whileHover="hover"
+                >
+                  {link.icon}
+                  {isMediumScreen ? link.label : null}
 
-                    <motion.div
-                      variants={underlineVariants}
-                      transition={{ duration: 0.3 }}
-                      className="absolute bottom-0 left-0 w-full h-[.1875rem] bg-current scale-x-0 group-hover:scale-x-100 origin-left"
-                      style={{ transformOrigin: 'left' }}
-                    />
-                  </motion.a>
-                ))}
+                  <motion.div
+                    variants={underlineVariants}
+                    transition={{ duration: 0.3 }}
+                    className="absolute bottom-0 left-0 w-full h-[.1875rem] bg-current scale-x-0 group-hover:scale-x-100 origin-left"
+                    style={{ transformOrigin: 'left' }}
+                  />
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>
