@@ -28,7 +28,7 @@ const Loading = () => {
   return (
     <>
       <AnimatePresence>
-        {!isLoading && (
+        {isLoading && (
           <motion.div
             className="absolute h-screen w-full flex-col bg-background z-50 top-0 left-0 flex items-center justify-center"
             initial={{ y: '-100%' }}
