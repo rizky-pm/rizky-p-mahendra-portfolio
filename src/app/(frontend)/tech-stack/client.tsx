@@ -1,14 +1,11 @@
 'use client'
 import { TechStack } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { Marquee } from '@/components/magicui/marquee'
 import _ from 'lodash'
 import { motion } from 'motion/react'
 
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { useBreakpoints } from '@/hooks/useBreakpoints'
-import TechStackIcon from './components/tech-stack-icon'
 import { useLoadingStore } from '@/store/useLoadingStore'
 import ForceLoading from '@/components/force-loading'
 
@@ -16,8 +13,22 @@ type Props = {
   techStackDocs: TechStack
 }
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      delayChildren: 1.75,
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -30 },
+  show: { opacity: 1, x: 0 },
+}
+
 const TechStackClient = ({ techStackDocs }: Props) => {
-  const { isExtraLargeScreen } = useBreakpoints()
   const { setIsLoading } = useLoadingStore()
 
   useEffect(() => {
@@ -31,76 +42,69 @@ const TechStackClient = ({ techStackDocs }: Props) => {
   return (
     <>
       <ForceLoading />
-      <motion.section
-        initial={{ y: -30, opacity: 0 }}
-        animate={{
-          y: 0,
-          opacity: 1,
-          transition: { ease: 'easeIn', duration: 0.5 },
-        }}
-        className="w-full md:min-h-screen px-5 sm:px-20 2xl:px-40 sm:py-10 2xl:py-20 sm:flex sm:flex-col sm:justify-center sm:items-center"
-      >
+      <section className="w-full md:min-h-screen px-5 sm:px-20 2xl:px-40 sm:py-10 2xl:py-20 sm:flex sm:flex-col sm:justify-center sm:items-center">
         <div className="w-full container flex flex-col gap-10 mb-auto xl:sticky top-20 left-0 h-full md:justify-center">
           <div className="flex flex-col gap-2 xl:w-2/5">
-            <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase">
+            <motion.h1
+              initial={{ x: -30, opacity: 0 }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                transition: { ease: 'easeIn', duration: 0.5, delay: 0.75 },
+              }}
+              className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase"
+            >
               {techStackDocs.title}
-            </h1>
+            </motion.h1>
 
-            <RichText
-              data={techStackDocs.description}
-              className="prose-sm 2xl:prose 3xl:prose-xl"
-            />
+            <motion.div
+              initial={{ x: -30, opacity: 0 }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                transition: { ease: 'easeIn', duration: 0.5, delay: 1.25 },
+              }}
+            >
+              <RichText
+                data={techStackDocs.description}
+                className="prose-sm 2xl:prose 3xl:prose-xl"
+              />
+            </motion.div>
           </div>
 
-          <div className="flex xl:flex-col gap-8 xl:gap-16 justify-center xl:justify-start h-[60vh] md:h-[70vh] xl:h-auto">
-            {techStackDocs.iconBig?.length ? (
-              <Marquee className="[--duration:60s]" vertical={!isExtraLargeScreen}>
-                {techStackDocs.iconBig.map((item) => {
+          <motion.div
+            className="flex flex-wrap gap-y-4 xl:gap-y-6 2xl:gap-y-10 gap-x-6 md:gap-x-10 xl:gap-x-12 2xl:gap-x-16 3xl:gap-x-20 justify-center xl:justify-start"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
+            {techStackDocs.iconBig?.length
+              ? techStackDocs.iconBig.map((item) => {
                   if (typeof item === 'object' && item !== null && 'url' in item && 'id' in item) {
-                    // Check if the item is a Media object
                     return (
-                      <TechStackIcon isBig key={item.id}>
+                      <motion.div
+                        key={item.id}
+                        variants={itemVariants}
+                        className="flex items-center text-background bg-primary-foreground p-2"
+                      >
                         <Image
-                          width={300}
-                          height={300}
+                          width={500}
+                          height={500}
                           src={item.url as string}
                           alt={item.alt}
                           priority
                           loading="eager"
+                          className="w-12 h-12 md:w-16 md:h-16 xl:w-[72px] xl:h-[72px] 2xl:w-24 2xl:h-24 3xl:w-36 3xl:h-36 aspect-square"
                         />
-                      </TechStackIcon>
+                      </motion.div>
                     )
                   }
                   return null
-                })}
-              </Marquee>
-            ) : null}
-
-            {techStackDocs.iconSmall?.length ? (
-              <Marquee reverse className="[--duration:25s]" vertical={!isExtraLargeScreen}>
-                {techStackDocs.iconSmall.map((item) => {
-                  if (typeof item === 'object' && item !== null && 'url' in item && 'id' in item) {
-                    // Check if the item is a Media object
-                    return (
-                      <TechStackIcon isBig={false} key={item.url}>
-                        <Image
-                          width={150}
-                          height={150}
-                          src={item.url as string}
-                          alt={item.alt}
-                          priority
-                          loading="eager"
-                        />
-                      </TechStackIcon>
-                    )
-                  }
-                  return null
-                })}
-              </Marquee>
-            ) : null}
-          </div>
+                })
+              : null}
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
     </>
   )
 }
