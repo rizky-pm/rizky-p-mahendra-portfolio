@@ -30,7 +30,7 @@ const ForceLoading = () => {
     <AnimatePresence>
       {!isLoading && (
         <motion.div
-          className="fixed h-screen w-full bg-background z-50 top-0 left-0 flex items-center justify-center"
+          className="absolute h-screen w-full flex-col bg-background z-50 top-0 left-0 flex items-center justify-center"
           initial={{ y: 0 }}
           animate={{
             y: '-100%',
@@ -41,9 +41,56 @@ const ForceLoading = () => {
             },
           }}
         >
-          <h1 className="text-foreground text-6xl md:text-7xl xl:text-8xl 2xl:text-[10rem] uppercase font-bold tracking-tighter">
-            Loading
-          </h1>
+          <div className="flex justify-between gap-2">
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: [0, 1, 0] }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'linear',
+                delay: 0,
+              }}
+              className="w-4 h-24 bg-foreground origin-center"
+            />
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: [0, 1, 0] }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'linear',
+                delay: 0.4,
+              }}
+              className="w-4 h-24 bg-foreground origin-center"
+            />
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: [0, 1, 0] }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'linear',
+                delay: 0.3,
+              }}
+              className="w-4 h-24 bg-foreground origin-center"
+            />
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: [0, 1, 0] }}
+              transition={{
+                duration: 1,
+                repeat: Infinity,
+                repeatType: 'loop',
+                ease: 'linear',
+                delay: 0.2,
+              }}
+              className="w-4 h-24 bg-foreground origin-center"
+            />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
