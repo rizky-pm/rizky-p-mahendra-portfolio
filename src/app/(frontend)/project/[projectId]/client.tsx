@@ -78,7 +78,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
           y: 0,
           opacity: 1,
           transition: {
-            delay: 0.25,
+            delay: 0.75,
             ease: 'easeIn',
             duration: 0.25,
           },

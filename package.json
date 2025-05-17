@@ -23,6 +23,7 @@
     "@payloadcms/richtext-lexical": "3.37.0",
     "@payloadcms/storage-uploadthing": "3.37.0",
     "@radix-ui/react-slot": "^1.2.2",
+    "@radix-ui/react-tooltip": "^1.2.6",
     "@types/lodash": "^4.17.16",
     "bootstrap-icons": "^1.12.1",
     "class-variance-authority": "^0.7.1",

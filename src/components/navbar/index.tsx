@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return pathname !== '/' ? (
     <>
-      <nav className="sm:fixed top-0 left-0 sm:flex sm:justify-center sm:items-center px-5 py-5 sm:py-0 sm:px-0 h-full">
+      <nav className="sm:fixed top-0 left-0 sm:flex sm:justify-center sm:items-center px-5 py-5 sm:py-0 sm:px-0 h-full z-40">
         {isSmallScren ? (
           <ul className="flex flex-col gap-20 py-10 px-5 w-full h-full justify-center">
             {navItems.map((item) => {

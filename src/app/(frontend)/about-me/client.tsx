@@ -34,11 +34,11 @@ const AboutMeClient = (props: Props) => {
         animate={{
           y: 0,
           opacity: 1,
-          transition: { ease: 'easeIn', duration: 0.5 },
+          transition: { ease: 'easeIn', duration: 0.5, delay: 0.75 },
         }}
-        className="w-full md:min-h-screen px-5 sm:px-20 2xl:px-40 sm:py-10 2xl:py-20 sm:flex sm:flex-col sm:justify-center sm:items-center"
+        className="w-full md:min-h-screen px-5 sm:px-20 pb-10 md:pb-0 2xl:px-40 sm:py-10 2xl:py-20 sm:flex sm:flex-col sm:justify-center sm:items-center"
       >
-        <div className="w-full container flex flex-col-reverse xl:flex-row gap-10 xl:sticky top-20 left-0 justify-center">
+        <div className="w-full container flex flex-col-reverse xl:flex-row gap-5 md:gap-10 xl:sticky top-20 left-0 justify-center">
           <div className="flex flex-col gap-2 xl:w-2/5">
             <h1 className="text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-extrabold uppercase  ">
               {data.title}

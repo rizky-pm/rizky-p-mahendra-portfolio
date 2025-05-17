@@ -33,7 +33,7 @@ const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
       <ForceLoading />
       <motion.div
         initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, transition: { ease: 'easeIn', duration: 0.5 } }}
+        animate={{ y: 0, opacity: 1, transition: { ease: 'easeIn', duration: 0.5, delay: 0.75 } }}
       >
         <ListLayout
           left={

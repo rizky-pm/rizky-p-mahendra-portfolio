@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google'
 import './styles.css'
 import Loading from '@/components/loading'
 import Navbar from '@/components/navbar'
+import Background from '@/components/background'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -16,7 +17,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body className={`${plusJakartaSans.className} flex flex-col relative`}>
         <Loading />
         <Navbar />
-        <main>{children}</main>
+        <main className="z-30">{children}</main>
+        <Background />
       </body>
     </html>
   )
