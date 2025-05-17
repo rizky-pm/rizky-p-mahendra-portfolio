@@ -14,7 +14,7 @@ const Background = () => {
       height={500}
       src={isExtraLargeScreen ? BackgroundLandscape : BackgroundPotrait}
       alt="background illustration"
-      className="h-full w-full fixed top-0 left-0 -z-50 opacity-50"
+      className="h-full w-full fixed top-0 left-0 -z-50 opacity-15"
     />
   )
 }
