@@ -34,6 +34,7 @@ const ExperienceClient = ({ experienceDocs, experinecePageDocs }: Props) => {
       <motion.div
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { ease: 'easeIn', duration: 0.5, delay: 0.75 } }}
+        className="pb-10 md:pb-0"
       >
         <ListLayout
           left={

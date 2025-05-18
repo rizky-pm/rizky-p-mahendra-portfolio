@@ -40,7 +40,7 @@ const ExperienceDetailClient = ({ experienceDetailDocs }: Props) => {
             duration: 0.25,
           },
         }}
-        className="w-full px-5 sm:px-20 sm:py-10 2xl:px-30 min-h-screen sm:min-h-auto sm:flex sm:justify-center sm:items-center"
+        className="w-full px-5 sm:px-20 pb-10 sm:py-10 2xl:px-30 min-h-screen sm:min-h-auto sm:flex sm:justify-center sm:items-center"
       >
         {experienceDetailDocs ? (
           <div className="w-full flex flex-col xl:justify-center xl:items-center gap-10 md:gap-20 xl:gap-30 2xl:gap-20">

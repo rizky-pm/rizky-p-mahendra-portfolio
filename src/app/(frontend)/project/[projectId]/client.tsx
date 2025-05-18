@@ -83,7 +83,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
             duration: 0.25,
           },
         }}
-        className="w-full px-5 sm:px-20 2xl:px-30 sm:py-10 min-h-screen sm:flex sm:justify-center sm:items-center"
+        className="w-full px-5 sm:px-20 pb-10 sm:py-10 2xl:px-30 min-h-screen sm:min-h-auto sm:flex sm:justify-center sm:items-center"
       >
         <div className="w-full flex flex-col xl:justify-center xl:items-center gap-10 md:gap-20 xl:gap-30 2xl:gap-40">
           <div className="bg-background flex flex-col text-foreground items-center h-[45vh] sm:h-[50vh] xl:h-[55vh] w-full gap-2 p-5">
@@ -116,7 +116,7 @@ const ProjectDetailClient = ({ projectDetailDocs }: Props) => {
               />
             ) : null}
 
-            <div className="w-full flex items-center gap-x-6 justify-center sm:gap-8 xl:gap-16 py-5">
+            <div className="w-full flex items-center gap-x-6 justify-center sm:gap-8 xl:gap-16">
               {links.map((link, index) => (
                 <motion.a
                   key={index}
