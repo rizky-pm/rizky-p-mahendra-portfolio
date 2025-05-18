@@ -59,12 +59,13 @@ const ProjectClient = (props: Props) => {
                     <motion.img
                       key={thumbnailPreview.id}
                       src={thumbnailPreview.url as string}
-                      alt=""
+                      alt={thumbnailPreview.alt}
                       className="w-full h-[28.125rem] 2xl:h-[37.5rem] object-fill 2xl:object-cover shadow"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.25 }}
+                      loading="eager"
                     />
                   ) : null}
                 </AnimatePresence>
